@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
+import NavBar from '../components/NavBar';
 import HomePage from '../components/HomePage';
 import ThreadList from '../components/ThreadList';
 import ThreadDetail from '../components/ThreadDetail';
@@ -37,6 +38,7 @@ const ThreadContainer = () => {
         <Router>
             <>
             <h1>Food Hacks</h1>
+            <NavBar />
             <Route exact path="/" component={HomePage} />
             <Route exact path="/threads" render={() => <ThreadList allThreads={allThreads} onSelectedThread={handleSelectedThread}/>}/>
             {redirect && <Redirect to="/single-thread" />}
