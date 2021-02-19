@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-const ThreadList = ({allThreads}) => {
+const ThreadList = ({allThreads, onSelectedThread}) => {
 
     const threadListItems = allThreads.map((thread, index) => {
         return(
-            <li key={index}>{thread.data.title}</li>
+            <li onClick={() => {onSelectedThread(thread)}} key={index}>{thread.data.title}</li>
         ) 
     });
 
