@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ThreadDetail = ({thread, setRedirectToFalse}) => {
+const ThreadDetail = ({thread, onFaveToggle, setRedirectToFalse}) => {
 
     setRedirectToFalse()
 
@@ -16,6 +16,7 @@ const ThreadDetail = ({thread, setRedirectToFalse}) => {
         <p>UpVote Ratio: {thread.data.upvote_ratio}%</p>
         <p>Number of Awards Received: {thread.data.total_awards_received}</p>
         <img src={thread.data.thumbnail} height="150" />
+        <button onClick={() => {onFaveToggle(thread)}}>{thread.favourite ? 'Delete from Favourites' : 'Add to Favourites'}</button>
         </>
     )
 };

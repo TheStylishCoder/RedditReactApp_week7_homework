@@ -34,6 +34,16 @@ const ThreadContainer = () => {
         setRedirect(false)
     }
 
+    const handleFaveToggle = (updatedThread) => {
+        const updatedThreads = allThreads.map((thread) => {
+            if(thread.title === updatedThread.title){
+                thread.favourite = !thread.favourite
+            }
+            return thread
+        })
+        setAllThreads(updatedThreads)
+    }
+
     return(
         <Router>
             <>
@@ -42,7 +52,7 @@ const ThreadContainer = () => {
             <Route exact path="/" component={HomePage} />
             <Route exact path="/threads" render={() => <ThreadList allThreads={allThreads} onSelectedThread={handleSelectedThread}/>}/>
             {redirect && <Redirect to="/single-thread" />}
-            <Route exact path="/single-thread" render={() => <ThreadDetail thread={selectedThread} setRedirectToFalse={setRedirectToFalse}/>} />
+            <Route exact path="/single-thread" render={() => <ThreadDetail thread={selectedThread} onFaveToggle={handleFaveToggle} setRedirectToFalse={setRedirectToFalse}/>} />
         
 
             </>
