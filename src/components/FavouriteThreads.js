@@ -15,7 +15,7 @@ const FavouriteThreadsList = ({allThreads, onSelectedThread}) => {
     const listNodes = filteredThreads.map((thread, index) => {
         return(
             <Link to="/single-thread">
-            <li onClick={() => {onSelectedThread(thread)}} key={index}>{thread.data.title}</li>
+            <li className="list-item" onClick={() => {onSelectedThread(thread)}} key={index}>{thread.data.title} <br />{thread.data.link_flair_text}</li>
             </Link>
         )
         
@@ -23,11 +23,11 @@ const FavouriteThreadsList = ({allThreads, onSelectedThread}) => {
     })
 
     return(
-        <>
-        <ul>
-            {listNodes}
-        </ul>
-        </>
+        <div className="container">
+            <ul className="thread-list">
+                {listNodes}
+            </ul>
+        </div>
     )
 }
 

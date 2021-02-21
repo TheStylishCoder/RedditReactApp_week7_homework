@@ -2,6 +2,7 @@
   text-align: center;
   border: solid 20px rgb(51, 51, 100);
   
+  
 }
 
 
@@ -32,16 +33,16 @@
 .list-item {
   width: 800px;
   height: 90px;
-  border: solid navy 2px;
-  /* display: inline-block; */
+  border: solid navy 5px;
+  border-radius: 15px;
   margin: 5px;
   padding-top: 50px;
   padding-left: 10px;
   padding-right: 10px;
   
   
-  
-  
-  
-  
+}
+
+.detail-container > h2 > a {
+  color: black;
 }

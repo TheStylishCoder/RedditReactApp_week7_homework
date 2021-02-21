@@ -14,6 +14,7 @@ const ThreadContainer = () => {
     const [allThreads, setAllThreads] = useState([]);
     const [selectedThread, setSelectedThread] = useState(null);
     // const [favourites, setFavourites] = useState([]);
+    const [typeOfHack, setTypeOfHack] = useState([]);
   
 
     const getThreads = () => {
@@ -23,11 +24,22 @@ const ThreadContainer = () => {
         .then(data => setAllThreads(data.data.children))
         
     };
+
+    const handleHackTypes = () => {
+        const hackTypes = allThreads.map((thread) => {
+            return thread.data.link_flair_text
+        })
+        const uniqueHackTypes = [...new Set(hackTypes)]
+        setTypeOfHack(uniqueHackTypes)
+    }
     
 
     useEffect(() => {
         getThreads()
+        handleHackTypes()
     }, []);
+
+    
 
     const handleSelectedThread = (thread) => {
         setSelectedThread(thread)
@@ -65,6 +77,10 @@ const ThreadContainer = () => {
         setAllThreads(updatedThreads)
     }
 
+    
+
+  
+
    
 
     return(
@@ -73,7 +89,7 @@ const ThreadContainer = () => {
                 <NavBar />
                 <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route exact path="/threads" render={() => <ThreadList allThreads={allThreads} onSelectedThread={handleSelectedThread} />}/>
+                <Route exact path="/threads" render={() => <ThreadList allThreads={allThreads} onSelectedThread={handleSelectedThread} typeOfHack={typeOfHack}/>}/>
                 <Route exact path="/single-thread" render={() => <ThreadDetail thread={selectedThread}  handleFaveThreads={handleFavouriteToggle}/>} />
                 <Route exact path="/favourites" render={() => <FavouriteThreadsList allThreads={allThreads} onSelectedThread={handleSelectedThread}/>}/>
                 <Route component={ErrorPage} />

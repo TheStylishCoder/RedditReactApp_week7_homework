@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 
-const ThreadList = ({allThreads, onSelectedThread}) => {
+const ThreadList = ({allThreads, onSelectedThread, typeOfHack}) => {
 
     const threadListItems = allThreads.map((thread, index) => {
         return(
@@ -14,19 +14,29 @@ const ThreadList = ({allThreads, onSelectedThread}) => {
         ) 
     });
 
-    const options = allThreads.map((thread, index) => {
-        return(
-            <option value={thread.data.title} key={index}>{thread.data.link_flair_text}</option>
-        )
-    })
+    // const options = allThreads.map((thread, index) => {
+    //     return(
+    //         <option value={thread.data.title} key={index}>{thread.data.link_flair_text}</option>
+    //     )
+    // })
 
-    const handleChange = (event) => {
-        const foundType = allThreads.find((thread) => {
-            return thread.data.title === event.target.value
-        })
-        onSelectedThread(foundType)
+     
+
+    // const options = typeOfHack.map((thread, index) => {
+    //     return(
+    //         <option value={thread.data.link_flair_text} key={index}>{thread.data.link_flair_text}</option>
+    //     )
+    // })
+
+    // const handleChange = (event) => {
+    //     const results = allThreads.find((thread) => {
+    //         return thread.data.title === event.target.value
+    //     })
+    //     onSelectedThread(results)
         
-    }
+    // }
+
+    
 
     
 
@@ -34,10 +44,10 @@ const ThreadList = ({allThreads, onSelectedThread}) => {
     return(
         <>
         
-        <select onChange={handleChange} defaultValue="default">
+        {/* <select onChange={handleChange} defaultValue="default">
             <option disabled value="default">Choose type of Hack...</option>
             {options}
-        </select>
+        </select> */}
         
         <br />
         <div className="container">
