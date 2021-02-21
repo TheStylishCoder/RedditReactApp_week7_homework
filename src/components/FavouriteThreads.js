@@ -1,6 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-const FavouriteThreadsList = ({allThreads}) => {
+const FavouriteThreadsList = ({allThreads, onSelectedThread}) => {
 
    
     if(!allThreads){
@@ -13,8 +14,12 @@ const FavouriteThreadsList = ({allThreads}) => {
 
     const listNodes = filteredThreads.map((thread, index) => {
         return(
-            <li key={index}>{thread.data.title}</li>
+            <Link to="/single-thread">
+            <li onClick={() => {onSelectedThread(thread)}} key={index}>{thread.data.title}</li>
+            </Link>
         )
+        
+            
     })
 
     return(

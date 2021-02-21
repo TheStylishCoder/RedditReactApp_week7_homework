@@ -8,18 +8,43 @@ const ThreadList = ({allThreads, onSelectedThread}) => {
         return(
             <>
             <Link to="/single-thread">
-            <li onClick={() => {onSelectedThread(thread)}} key={index}>{thread.data.title}</li>
+            <li className="list-item" onClick={() => {onSelectedThread(thread)}} key={index}>{thread.data.title}</li>
             </Link>
             </>
         ) 
     });
 
+    const options = allThreads.map((thread, index) => {
+        return(
+            <option value={thread.data.title} key={index}>{thread.data.link_flair_text}</option>
+        )
+    })
+
+    const handleChange = (event) => {
+        const foundType = allThreads.find((thread) => {
+            return thread.data.title === event.target.value
+        })
+        onSelectedThread(foundType)
+        
+    }
+
+    
+
 
     return(
         <>
-        <ul>
-            {threadListItems}
-        </ul>
+        
+        <select onChange={handleChange} defaultValue="default">
+            <option disabled value="default">Choose type of Hack...</option>
+            {options}
+        </select>
+        
+        <br />
+        <div className="container">
+            <ul className="thread-list">
+                {threadListItems}
+            </ul>
+        </div>
         </>
     )
 };

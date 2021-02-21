@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import HomePage from '../components/HomePage';
 import ThreadList from '../components/ThreadList';
@@ -8,11 +8,12 @@ import FavouriteThreadsList from '../components/FavouriteThreads';
 import ErrorPage from '../components/ErrorPage';
 
 
+
 const ThreadContainer = () => {
 
     const [allThreads, setAllThreads] = useState([]);
     const [selectedThread, setSelectedThread] = useState(null);
-    const [favourites, setFavourites] = useState([]);
+    // const [favourites, setFavourites] = useState([]);
   
 
     const getThreads = () => {
@@ -33,6 +34,8 @@ const ThreadContainer = () => {
         
     
     };
+
+    
 //can add different items but more than once
     // const handleFavouriteThreads = (selectedThread) => {
     //     setFavourites([...favourites, selectedThread]);
@@ -67,17 +70,14 @@ const ThreadContainer = () => {
     return(
         <Router>
             <>
-            <h1>Food Hacks</h1>
-            <NavBar />
-            <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/threads" render={() => <ThreadList allThreads={allThreads} onSelectedThread={handleSelectedThread}/>}/>
-            <Route exact path="/single-thread" render={() => <ThreadDetail thread={selectedThread}  handleFaveThreads={handleFavouriteToggle}/>} />
-            <Route exact path="/favourites" render={() => <FavouriteThreadsList allThreads={allThreads} thread={selectedThread}/>}/>
-            <Route component={ErrorPage} />
-            </Switch>
-            
-
+                <NavBar />
+                <Switch>
+                <Route exact path="/" component={HomePage} />
+                <Route exact path="/threads" render={() => <ThreadList allThreads={allThreads} onSelectedThread={handleSelectedThread} />}/>
+                <Route exact path="/single-thread" render={() => <ThreadDetail thread={selectedThread}  handleFaveThreads={handleFavouriteToggle}/>} />
+                <Route exact path="/favourites" render={() => <FavouriteThreadsList allThreads={allThreads} onSelectedThread={handleSelectedThread}/>}/>
+                <Route component={ErrorPage} />
+                </Switch>
             </>
         </Router>
     ) 
